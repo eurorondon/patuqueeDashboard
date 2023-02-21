@@ -86,7 +86,7 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 
 // CREATE PRODUCT
 export const createProduct =
-  (name, price, description, image, countInStock) =>
+  (photo, name, price, description, image, countInStock) =>
   async (dispatch, getState) => {
     try {
       dispatch({ type: PRODUCT_CREATE_REQUEST });
@@ -98,14 +98,17 @@ export const createProduct =
       const config = {
         headers: {
           Authorization: `Bearer ${userInfo.token}`,
+          "Content-Type": "multipart/form-data",
         },
       };
+      const form = new FormData();
 
-      const { data } = await axios.post(
-        `${URL}/api/products/`,
-        { name, price, description, image, countInStock },
-        config
-      );
+      form.append("name", name);
+      form.append("price", price);
+      form.append("countInStock", countInStock);
+      form.append("photo", photo);
+
+      const { data } = await axios.post(`${URL}/api/products/`, form, config);
 
       dispatch({ type: PRODUCT_CREATE_SUCCESS, payload: data });
     } catch (error) {

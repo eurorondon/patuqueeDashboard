@@ -15,6 +15,7 @@ const ToastObjects = {
   autoClose: 2000,
 };
 const AddProductMain = () => {
+  const [photo, setPhoto] = useState(null);
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
@@ -35,12 +36,15 @@ const AddProductMain = () => {
       setCountInStock(0);
       setImage("");
       setPrice(0);
+      setPhoto("");
     }
   }, [product, dispatch]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(createProduct(name, price, description, image, countInStock));
+    dispatch(
+      createProduct(photo, name, price, description, image, countInStock)
+    );
   };
 
   return (
@@ -129,7 +133,17 @@ const AddProductMain = () => {
                       required
                       onChange={(e) => setImage(e.target.value)}
                     />
-                    <input className="form-control mt-3" type="file" />
+                    <input
+                      className="form-control mt-3"
+                      type="file"
+                      name="photo"
+                      onChange={(e) =>
+                        setPhoto(
+                          e.target.files[0],
+                          console.log(e.target.files[0])
+                        )
+                      }
+                    />
                   </div>
                 </div>
               </div>
