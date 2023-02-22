@@ -106,6 +106,8 @@ export const createProduct =
       form.append("name", name);
       form.append("price", price);
       form.append("countInStock", countInStock);
+      form.append("description", description);
+      form.append("image", image);
       form.append("photo", photo);
 
       const { data } = await axios.post(`${URL}/api/products/`, form, config);

@@ -18,7 +18,11 @@ const Product = (props) => {
       <div className="col-md-6 col-sm-6 col-lg-3 mb-5">
         <div className="card card-product-grid shadow-sm">
           <Link to="#" className="img-wrap">
-            <img src={product.image[0]} alt="Product" />
+            {product.photo.url ? (
+              <img src={product.photo.url} alt="Product" />
+            ) : (
+              <img src={product.image[0]} alt="Product" />
+            )}
           </Link>
           <div className="info-wrap">
             <Link to="#" className="title text-truncate">
