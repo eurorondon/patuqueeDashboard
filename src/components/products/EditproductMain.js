@@ -26,6 +26,7 @@ const EditProductMain = (props) => {
   const [image, setImage] = useState("");
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
 
   const dispatch = useDispatch();
 
@@ -52,6 +53,7 @@ const EditProductMain = (props) => {
         setCountInStock(product.countInStock);
         setImage(product.image);
         setPrice(product.price);
+        setCategory(product.categories);
       }
     }
   }, [product, dispatch, productId, successUpdate]);
@@ -66,6 +68,7 @@ const EditProductMain = (props) => {
         description,
         image,
         countInStock,
+        category,
       })
     );
   };
@@ -113,6 +116,20 @@ const EditProductMain = (props) => {
                           required
                           value={name}
                           onChange={(e) => setName(e.target.value)}
+                        />
+                      </div>
+                      <div className="mb-4">
+                        <label htmlFor="product_title" className="form-label">
+                          Categories
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Type here"
+                          className="form-control"
+                          id="product_title"
+                          required
+                          value={category}
+                          onChange={(e) => setCategory(e.target.value)}
                         />
                       </div>
                       <div className="mb-4">

@@ -15,12 +15,13 @@ const ToastObjects = {
   autoClose: 2000,
 };
 const AddProductMain = () => {
-  const [photo, setPhoto] = useState(null);
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
+  const [photo, setPhoto] = useState(null);
+  const [category, setCategory] = useState("");
 
   const dispatch = useDispatch();
 
@@ -37,13 +38,22 @@ const AddProductMain = () => {
       setImage("");
       setPrice(0);
       setPhoto("");
+      setCategory("");
     }
   }, [product, dispatch]);
 
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
-      createProduct(photo, name, price, description, image, countInStock)
+      createProduct(
+        photo,
+        name,
+        price,
+        description,
+        image,
+        countInStock,
+        category
+      )
     );
   };
 
@@ -82,6 +92,20 @@ const AddProductMain = () => {
                       required
                       value={name}
                       onChange={(e) => setName(e.target.value)}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="product_title" className="form-label">
+                      Category
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Type here"
+                      className="form-control"
+                      id="product_title"
+                      required
+                      value={category}
+                      onChange={(e) => setCategory(e.target.value)}
                     />
                   </div>
                   <div className="mb-4">
@@ -137,6 +161,7 @@ const AddProductMain = () => {
                       className="form-control mt-3"
                       type="file"
                       name="photo"
+                      multiple
                       onChange={(e) =>
                         setPhoto(
                           e.target.files[0],
