@@ -26,7 +26,7 @@ const EditProductMain = (props) => {
   const [image, setImage] = useState("");
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
+  const [categories, setCategories] = useState("");
 
   const dispatch = useDispatch();
 
@@ -53,9 +53,10 @@ const EditProductMain = (props) => {
         setCountInStock(product.countInStock);
         setImage(product.image);
         setPrice(product.price);
-        setCategory(product.categories);
+        setCategories(product.categories);
       }
     }
+    // console.log(product);
   }, [product, dispatch, productId, successUpdate]);
 
   const submitHandler = (e) => {
@@ -68,7 +69,7 @@ const EditProductMain = (props) => {
         description,
         image,
         countInStock,
-        category,
+        categories,
       })
     );
   };
@@ -128,8 +129,8 @@ const EditProductMain = (props) => {
                           className="form-control"
                           id="product_title"
                           required
-                          value={category}
-                          onChange={(e) => setCategory(e.target.value)}
+                          value={categories}
+                          onChange={(e) => setCategories(e.target.value)}
                         />
                       </div>
                       <div className="mb-4">
@@ -166,7 +167,7 @@ const EditProductMain = (props) => {
                           placeholder="Type here"
                           className="form-control"
                           rows="7"
-                          required
+                          // required
                           value={description}
                           onChange={(e) => setDescription(e.target.value)}
                         ></textarea>

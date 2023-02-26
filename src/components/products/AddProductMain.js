@@ -103,7 +103,7 @@ const AddProductMain = () => {
                       placeholder="Type here"
                       className="form-control"
                       id="product_title"
-                      required
+                      // required
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
                     />
@@ -131,7 +131,7 @@ const AddProductMain = () => {
                       placeholder="Type here"
                       className="form-control"
                       id="product_price"
-                      required
+                      // required
                       value={countInStock}
                       onChange={(e) => setCountInStock(e.target.value)}
                     />
@@ -142,7 +142,7 @@ const AddProductMain = () => {
                       placeholder="Type here"
                       className="form-control"
                       rows="7"
-                      required
+                      // required
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                     ></textarea>
@@ -154,7 +154,7 @@ const AddProductMain = () => {
                       type="text"
                       placeholder="Enter Image URL"
                       value={image}
-                      required
+                      // required
                       onChange={(e) => setImage(e.target.value)}
                     />
                     <input

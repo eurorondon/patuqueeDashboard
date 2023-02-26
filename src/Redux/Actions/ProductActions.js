@@ -172,6 +172,8 @@ export const updateProduct = (product) => async (dispatch, getState) => {
       config
     );
 
+    console.log(product);
+
     dispatch({ type: PRODUCT_UPDATE_SUCCESS, payload: data });
     dispatch({ type: PRODUCT_EDIT_SUCCESS, payload: data });
   } catch (error) {
