@@ -17,10 +17,10 @@ const ToastObjects = {
 const AddProductMain = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
-  const [image, setImage] = useState("");
-  const [image2, setImage2] = useState("");
-  const [image3, setImage3] = useState("");
-  const [image4, setImage4] = useState("");
+  const [image, setImage] = useState();
+  const [image2, setImage2] = useState();
+  const [image3, setImage3] = useState();
+  const [image4, setImage4] = useState();
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState(null);

@@ -24,6 +24,9 @@ const EditProductMain = (props) => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
+  const [image2, setImage2] = useState("");
+  const [image3, setImage3] = useState("");
+  const [image4, setImage4] = useState("");
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
   const [categories, setCategories] = useState("");
@@ -54,7 +57,10 @@ const EditProductMain = (props) => {
         setName(product.name);
         setDescription(product.description);
         setCountInStock(product.countInStock);
-        setImage(product.image);
+        setImage(product.image[0]);
+        setImage2(product.image[1]);
+        setImage3(product.image[2]);
+        setImage4(product.image[3]);
         setPrice(product.price);
         setCategories(product.categories[0]);
         setCategories2(product.categories[1]);
@@ -73,7 +79,7 @@ const EditProductMain = (props) => {
         name,
         price,
         description,
-        image,
+        image: [image, image2, image3, image4],
         countInStock,
         categories: [categories, categories2, categories3],
       })
@@ -134,7 +140,7 @@ const EditProductMain = (props) => {
                           placeholder="Type here"
                           className="form-control"
                           id="product_title"
-                          required
+                          // required
                           value={categories}
                           onChange={(e) => setCategories(e.target.value)}
                         />
@@ -148,7 +154,7 @@ const EditProductMain = (props) => {
                           placeholder="Type here"
                           className="form-control"
                           id=""
-                          required
+                          // required
                           value={categories2}
                           onChange={(e) => setCategories2(e.target.value)}
                         />
@@ -162,7 +168,7 @@ const EditProductMain = (props) => {
                           placeholder="Type here"
                           className="form-control"
                           id=""
-                          required
+                          // required
                           value={categories3}
                           onChange={(e) => setCategories3(e.target.value)}
                         />
@@ -207,13 +213,43 @@ const EditProductMain = (props) => {
                         ></textarea>
                       </div>
                       <div className="mb-4">
-                        <label className="form-label">Images</label>
+                        <label className="form-label">Images1</label>
                         <input
                           className="form-control"
                           type="text"
                           value={image}
                           required
                           onChange={(e) => setImage(e.target.value)}
+                        />
+                      </div>
+                      <div className="mb-4">
+                        <label className="form-label">Images2</label>
+                        <input
+                          className="form-control"
+                          type="text"
+                          value={image2}
+                          required
+                          onChange={(e) => setImage2(e.target.value)}
+                        />
+                      </div>
+                      <div className="mb-4">
+                        <label className="form-label">Images3</label>
+                        <input
+                          className="form-control"
+                          type="text"
+                          value={image3}
+                          required
+                          onChange={(e) => setImage3(e.target.value)}
+                        />
+                      </div>
+                      <div className="mb-4">
+                        <label className="form-label">Images4</label>
+                        <input
+                          className="form-control"
+                          type="text"
+                          value={image4}
+                          required
+                          onChange={(e) => setImage4(e.target.value)}
                         />
                       </div>
                     </>

@@ -92,6 +92,9 @@ export const createProduct =
     price,
     description,
     image,
+    image2,
+    image3,
+    image4,
     countInStock,
     category,
     category2,
@@ -117,7 +120,22 @@ export const createProduct =
       form.append("price", price);
       form.append("countInStock", countInStock);
       form.append("description", description);
-      form.append("image", image);
+      if (image != null) {
+        form.append("image", image);
+      }
+
+      if (image2 != null) {
+        form.append("image", image2);
+      }
+
+      if (image3 != null) {
+        form.append("image", image3);
+      }
+
+      if (image4 != null) {
+        form.append("image", image4);
+      }
+
       form.append("photo", photo);
       form.append("categories", category);
       form.append("categories", category2);

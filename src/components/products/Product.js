@@ -12,6 +12,7 @@ const Product = (props) => {
       dispatch(deleteProduct(id));
     }
   };
+  // console.log(product.photo[0].url);
 
   return (
     <>
