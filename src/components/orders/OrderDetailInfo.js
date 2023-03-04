@@ -18,7 +18,7 @@ const OrderDetailInfo = (props) => {
           </div>
         </article>
       </div>
-      <div className="col-md-6 col-lg-4">
+      {/* <div className="col-md-6 col-lg-4">
         <article className="icontext align-items-start">
           <span className="icon icon-sm rounded-circle alert-success">
             <i className="text-success fas fa-truck-moving"></i>
@@ -31,8 +31,8 @@ const OrderDetailInfo = (props) => {
             </p>
           </div>
         </article>
-      </div>
-      <div className="col-md-6 col-lg-4">
+      </div> */}
+      {/* <div className="col-md-6 col-lg-4">
         <article className="icontext align-items-start">
           <span className="icon icon-sm rounded-circle alert-success">
             <i className="text-success fas fa-map-marker-alt"></i>
@@ -47,7 +47,7 @@ const OrderDetailInfo = (props) => {
             </p>
           </div>
         </article>
-      </div>
+      </div> */}
     </div>
   );
 };

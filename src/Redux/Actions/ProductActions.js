@@ -86,7 +86,17 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 
 // CREATE PRODUCT
 export const createProduct =
-  (photo, name, price, description, image, countInStock, category) =>
+  (
+    photo,
+    name,
+    price,
+    description,
+    image,
+    countInStock,
+    category,
+    category2,
+    category3
+  ) =>
   async (dispatch, getState) => {
     try {
       dispatch({ type: PRODUCT_CREATE_REQUEST });
@@ -110,6 +120,8 @@ export const createProduct =
       form.append("image", image);
       form.append("photo", photo);
       form.append("categories", category);
+      form.append("categories", category2);
+      form.append("categories", category3);
 
       const { data } = await axios.post(`${URL}/api/products/`, form, config);
 
@@ -152,6 +164,7 @@ export const editProduct = (id) => async (dispatch) => {
 
 // UPDATE PRODUCT
 export const updateProduct = (product) => async (dispatch, getState) => {
+  console.log(product);
   try {
     dispatch({ type: PRODUCT_UPDATE_REQUEST });
 

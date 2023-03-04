@@ -18,8 +18,8 @@ const Product = (props) => {
       <div className="col-md-6 col-sm-6 col-lg-3 mb-5">
         <div className="card card-product-grid shadow-sm">
           <Link to="#" className="img-wrap">
-            {product.photo.url ? (
-              <img src={product.photo.url} alt="Product" />
+            {product.photo[0].url ? (
+              <img src={product.photo[0].url} alt="Product" />
             ) : (
               <img src={product.image[0]} alt="Product" />
             )}

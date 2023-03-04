@@ -18,10 +18,15 @@ const AddProductMain = () => {
   const [name, setName] = useState("");
   const [price, setPrice] = useState(0);
   const [image, setImage] = useState("");
+  const [image2, setImage2] = useState("");
+  const [image3, setImage3] = useState("");
+  const [image4, setImage4] = useState("");
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
   const [photo, setPhoto] = useState(null);
   const [category, setCategory] = useState("");
+  const [category2, setCategory2] = useState("");
+  const [category3, setCategory3] = useState("");
 
   const dispatch = useDispatch();
 
@@ -39,6 +44,8 @@ const AddProductMain = () => {
       setPrice(0);
       setPhoto("");
       setCategory("");
+      setCategory2("");
+      setCategory3("");
     }
   }, [product, dispatch]);
 
@@ -51,8 +58,13 @@ const AddProductMain = () => {
         price,
         description,
         image,
+        image2,
+        image3,
+        image4,
         countInStock,
-        category
+        category,
+        category2,
+        category3
       )
     );
   };
@@ -102,10 +114,38 @@ const AddProductMain = () => {
                       type="text"
                       placeholder="Type here"
                       className="form-control"
-                      id="product_title"
+                      id=""
                       // required
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="product_title" className="form-label">
+                      Category 2
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Type here"
+                      className="form-control"
+                      id="product_title"
+                      // required
+                      value={category2}
+                      onChange={(e) => setCategory2(e.target.value)}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label htmlFor="product_title" className="form-label">
+                      Category 3
+                    </label>
+                    <input
+                      type="text"
+                      placeholder="Type here"
+                      className="form-control"
+                      id="product_title"
+                      // required
+                      value={category3}
+                      onChange={(e) => setCategory3(e.target.value)}
                     />
                   </div>
                   <div className="mb-4">
@@ -156,6 +196,33 @@ const AddProductMain = () => {
                       value={image}
                       // required
                       onChange={(e) => setImage(e.target.value)}
+                    />
+                    <label className="form-label">Images2</label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Enter Image URL"
+                      value={image2}
+                      // required
+                      onChange={(e) => setImage2(e.target.value)}
+                    />
+                    <label className="form-label">Images3</label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Enter Image URL"
+                      value={image3}
+                      // required
+                      onChange={(e) => setImage3(e.target.value)}
+                    />
+                    <label className="form-label">Images4</label>
+                    <input
+                      className="form-control"
+                      type="text"
+                      placeholder="Enter Image URL"
+                      value={image4}
+                      // required
+                      onChange={(e) => setImage4(e.target.value)}
                     />
                     <input
                       className="form-control mt-3"

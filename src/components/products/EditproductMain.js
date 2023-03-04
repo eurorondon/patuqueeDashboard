@@ -27,6 +27,9 @@ const EditProductMain = (props) => {
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
   const [categories, setCategories] = useState("");
+  const [categories2, setCategories2] = useState("");
+  const [categories3, setCategories3] = useState("");
+  const [catTotal, setCatTotal] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -53,14 +56,17 @@ const EditProductMain = (props) => {
         setCountInStock(product.countInStock);
         setImage(product.image);
         setPrice(product.price);
-        setCategories(product.categories);
+        setCategories(product.categories[0]);
+        setCategories2(product.categories[1]);
+        setCategories3(product.categories[2]);
       }
     }
-    // console.log(product);
+    console.log(product);
   }, [product, dispatch, productId, successUpdate]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+
     dispatch(
       updateProduct({
         _id: productId,
@@ -69,7 +75,7 @@ const EditProductMain = (props) => {
         description,
         image,
         countInStock,
-        categories,
+        categories: [categories, categories2, categories3],
       })
     );
   };
@@ -131,6 +137,34 @@ const EditProductMain = (props) => {
                           required
                           value={categories}
                           onChange={(e) => setCategories(e.target.value)}
+                        />
+                      </div>
+                      <div className="mb-4">
+                        <label htmlFor="product_title" className="form-label">
+                          Categories2
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Type here"
+                          className="form-control"
+                          id=""
+                          required
+                          value={categories2}
+                          onChange={(e) => setCategories2(e.target.value)}
+                        />
+                      </div>
+                      <div className="mb-4">
+                        <label htmlFor="product_title" className="form-label">
+                          Categories3
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Type here"
+                          className="form-control"
+                          id=""
+                          required
+                          value={categories3}
+                          onChange={(e) => setCategories3(e.target.value)}
                         />
                       </div>
                       <div className="mb-4">
