@@ -142,6 +142,7 @@ export const createProduct =
       form.append("categories", category3);
 
       const { data } = await axios.post(`${URL}/api/products/`, form, config);
+      console.log(photo);
 
       dispatch({ type: PRODUCT_CREATE_SUCCESS, payload: data });
     } catch (error) {

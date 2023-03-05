@@ -229,12 +229,7 @@ const AddProductMain = () => {
                       type="file"
                       name="photo"
                       multiple
-                      onChange={(e) =>
-                        setPhoto(
-                          e.target.files[0],
-                          console.log(e.target.files[0])
-                        )
-                      }
+                      onChange={(e) => setPhoto(e.target.files[0])}
                     />
                   </div>
                 </div>
