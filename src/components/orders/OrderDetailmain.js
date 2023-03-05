@@ -7,6 +7,7 @@ import {
   deliverOrder,
   getOrderDetails,
   paidConfirmOrder,
+  payOrder,
 } from "../../Redux/Actions/OrderActions";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
@@ -39,6 +40,13 @@ const OrderDetailmain = (props) => {
   };
   const descontarhandle = async () => {
     // console.log(producList);
+  };
+  // console.log(order);
+  // console.log(orderId);
+
+  const successPaymentHandler = () => {
+    dispatch(payOrder(orderId, order));
+    console.log("enviando");
   };
 
   return (
@@ -156,13 +164,44 @@ const OrderDetailmain = (props) => {
               </div>
 
               <>
+                {order.isPaid ? null : (
+                  <div>
+                    <p className="text-center">
+                      Si el cliente ha pagado en la tienda fisica, confirma el
+                      pago aqui.
+                    </p>
+
+                    <div className="d-flex justify-content-center">
+                      <button
+                        className="btn btn-info"
+                        onClick={() => {
+                          successPaymentHandler();
+                          confirmpayHandler();
+                        }}
+                      >
+                        Confirma el Pago
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </>
+
+              <>
                 {order.isPaid && order.ConfirmandoPago ? null : order.isPaid ? (
-                  <button
-                    onClick={confirmpayHandler}
-                    className="btn btn-warning"
-                  >
-                    Confirmar el Pago
-                  </button>
+                  <div className="">
+                    <p className="text-center">
+                      El cliente ha marcado como pagado, haz click aqui si ya
+                      confirmastes el pago.
+                    </p>
+                    <div className="d-flex justify-content-center">
+                      <button
+                        onClick={confirmpayHandler}
+                        className="btn btn-warning "
+                      >
+                        Confirmar el Pago
+                      </button>
+                    </div>
+                  </div>
                 ) : null}
               </>
             </div>

@@ -8,6 +8,9 @@ import {
   ORDER_LIST_FAIL,
   ORDER_LIST_REQUEST,
   ORDER_LIST_SUCCESS,
+  ORDER_PAY_FAIL,
+  ORDER_PAY_REQUEST,
+  ORDER_PAY_SUCCESS,
 } from "../Constants/OrderConstants";
 import { logout } from "./userActions";
 import axios from "axios";
@@ -115,6 +118,65 @@ export const deliverOrder = (order) => async (dispatch, getState) => {
   }
 };
 
+// ORDER PAY
+export const payOrder = (orderId, order) => async (dispatch, getState) => {
+  const userName = order.user.name;
+  const email = order.user.email;
+  const { totalPrice, _id } = order;
+
+  try {
+    dispatch({ type: ORDER_PAY_REQUEST });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    };
+
+    const { data } = await axios.put(
+      `${URL}/api/orders/${orderId}/pay`,
+      {},
+      config
+    );
+
+    console.log(data);
+    console.log("enviado a pay");
+
+    try {
+      const datas = {
+        totalPrice,
+        _id,
+        userName,
+        email,
+      };
+      const sendMail = await axios.post(`${URL}/api/orders/send`, datas);
+      console.log(sendMail);
+    } catch (error) {
+      alert(error.response.data.message);
+    }
+
+    dispatch({ type: ORDER_PAY_SUCCESS, payload: data });
+    console.log("pagado");
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Not authorized, token failed") {
+      dispatch(logout());
+    }
+    dispatch({
+      type: ORDER_PAY_FAIL,
+      payload: message,
+    });
+  }
+};
+
 // PAIDCONFIRM
 export const paidConfirmOrder =
   (order, producList) => async (dispatch, getState) => {
@@ -137,23 +199,25 @@ export const paidConfirmOrder =
         config
       );
 
+      console.log(data);
+
       //AQUI INICIA LA RESTA DEL PRODUCTO VENDIO AL STOCK
       const { orderItems } = order;
 
       const restarStock = () => {
-        console.log("entrando en resta de producto");
+        // console.log("entrando en resta de producto");
 
         try {
           orderItems.map((item) => {
             const idVendido = item.product;
             const qtyVendido = item.qty;
-            console.log(idVendido);
-            console.log(qtyVendido);
+            // console.log(idVendido);
+            // console.log(qtyVendido);
 
             const productVendido = producList.find(
               (product) => product._id === idVendido
             );
-            console.log(productVendido);
+            // console.log(productVendido);
 
             const countInStock = productVendido.countInStock;
             const resta = (countInStock - qtyVendido).toString();
@@ -167,7 +231,7 @@ export const paidConfirmOrder =
                 restar,
                 config
               );
-              // console.log(resData);
+              console.log(resData);
             };
             send();
           });
