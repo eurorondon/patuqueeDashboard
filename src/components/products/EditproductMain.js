@@ -67,8 +67,10 @@ const EditProductMain = (props) => {
         setCategories3(product.categories[2]);
       }
     }
-    console.log(product);
   }, [product, dispatch, productId, successUpdate]);
+
+  const array = [image, image2, image3, image4];
+  const filteredArray = array.filter(Boolean);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -79,7 +81,7 @@ const EditProductMain = (props) => {
         name,
         price,
         description,
-        image: [image, image2, image3, image4],
+        image: filteredArray,
         countInStock,
         categories: [categories, categories2, categories3],
       })
@@ -218,9 +220,16 @@ const EditProductMain = (props) => {
                           className="form-control"
                           type="text"
                           value={image}
-                          required
+                          // required
                           onChange={(e) => setImage(e.target.value)}
                         />
+                        <div className="d-flex justify-content-end mt-2">
+                          <img
+                            src={image}
+                            alt=""
+                            style={{ maxWidth: "10rem" }}
+                          />
+                        </div>
                       </div>
                       <div className="mb-4">
                         <label className="form-label">Images2</label>
@@ -228,9 +237,16 @@ const EditProductMain = (props) => {
                           className="form-control"
                           type="text"
                           value={image2}
-                          required
+                          // required
                           onChange={(e) => setImage2(e.target.value)}
                         />
+                        <div className="d-flex justify-content-end mt-2">
+                          <img
+                            src={image2}
+                            alt=""
+                            style={{ maxWidth: "10rem" }}
+                          />
+                        </div>
                       </div>
                       <div className="mb-4">
                         <label className="form-label">Images3</label>
@@ -238,9 +254,16 @@ const EditProductMain = (props) => {
                           className="form-control"
                           type="text"
                           value={image3}
-                          required
+                          // required
                           onChange={(e) => setImage3(e.target.value)}
                         />
+                        <div className="d-flex justify-content-end mt-2">
+                          <img
+                            src={image3}
+                            alt=""
+                            style={{ maxWidth: "10rem" }}
+                          />
+                        </div>
                       </div>
                       <div className="mb-4">
                         <label className="form-label">Images4</label>
@@ -248,9 +271,16 @@ const EditProductMain = (props) => {
                           className="form-control"
                           type="text"
                           value={image4}
-                          required
+                          // required
                           onChange={(e) => setImage4(e.target.value)}
                         />
+                        <div className="d-flex justify-content-end mt-2">
+                          <img
+                            src={image4}
+                            alt=""
+                            style={{ maxWidth: "10rem" }}
+                          />
+                        </div>
                       </div>
                     </>
                   )}
