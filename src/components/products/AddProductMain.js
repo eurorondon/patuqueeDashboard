@@ -23,10 +23,12 @@ const AddProductMain = () => {
   const [image4, setImage4] = useState();
   const [countInStock, setCountInStock] = useState(0);
   const [description, setDescription] = useState("");
-  const [photo, setPhoto] = useState(null);
+  const [photos, setPhotos] = useState(null);
   const [category, setCategory] = useState("");
   const [category2, setCategory2] = useState("");
   const [category3, setCategory3] = useState("");
+
+  console.log(countInStock);
 
   const dispatch = useDispatch();
 
@@ -42,18 +44,25 @@ const AddProductMain = () => {
       setCountInStock(0);
       setImage("");
       setPrice(0);
-      setPhoto("");
+      setPhotos("");
       setCategory("");
       setCategory2("");
       setCategory3("");
     }
   }, [product, dispatch]);
 
+  const handleChange = (e) => {
+    const selectedFiles = e.target.files;
+    // como selectedFiles es un objeto, debemos convertirlo en arreglo
+    const filesArray = Array.from(selectedFiles);
+    setPhotos(filesArray);
+  };
+
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
       createProduct(
-        photo,
+        photos,
         name,
         price,
         description,
@@ -229,7 +238,7 @@ const AddProductMain = () => {
                       type="file"
                       name="photo"
                       multiple
-                      onChange={(e) => setPhoto(e.target.files[0])}
+                      onChange={(e) => handleChange(e)}
                     />
                   </div>
                 </div>

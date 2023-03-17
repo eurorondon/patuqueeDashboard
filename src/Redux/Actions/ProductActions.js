@@ -85,9 +85,10 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 };
 
 // CREATE PRODUCT
+// CREATE PRODUCT
 export const createProduct =
   (
-    photo,
+    photos,
     name,
     price,
     description,
@@ -120,29 +121,17 @@ export const createProduct =
       form.append("price", price);
       form.append("countInStock", countInStock);
       form.append("description", description);
-      if (image != null) {
-        form.append("image", image);
-      }
-
-      if (image2 != null) {
-        form.append("image", image2);
-      }
-
-      if (image3 != null) {
-        form.append("image", image3);
-      }
-
-      if (image4 != null) {
-        form.append("image", image4);
-      }
-
-      form.append("photo", photo);
+      // form.append("photo", photo);
       form.append("categories", category);
       form.append("categories", category2);
       form.append("categories", category3);
 
+      photos.forEach((photo) => {
+        form.append("photo", photo);
+        console.log(photo);
+      });
+
       const { data } = await axios.post(`${URL}/api/products/`, form, config);
-      console.log(photo);
 
       dispatch({ type: PRODUCT_CREATE_SUCCESS, payload: data });
     } catch (error) {
@@ -159,7 +148,6 @@ export const createProduct =
       });
     }
   };
-
 // EDIT PRODUCT
 export const editProduct = (id) => async (dispatch) => {
   try {
