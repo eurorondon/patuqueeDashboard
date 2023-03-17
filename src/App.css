@@ -483,6 +483,87 @@ a.itemside:hover .title {
   object-fit: cover;
 }
 
+/* GRID CARDS PRODUCTS */
+.section {
+  padding: 2rem;
+}
+@media screen and (min-width: 768px) {
+  .section {
+    padding: 4rem;
+  }
+}
+
+.grid {
+  display: grid;
+  /* la siguiente linea se debe cambiar para responsive */
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-gap: 15px;
+  grid-row-gap: 25px;
+
+  /* grid-auto-rows: 350px; */
+  /* grid-auto-flow: row dense; */
+}
+
+.cardpen {
+  /* background-color: red; */
+  border-radius: 10px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  box-sizing: border-box;
+  background: #c4c4c4;
+  color: #fff;
+  /* grid-column-start: auto; */
+  /* grid-row-start: auto; */
+  color: #fff;
+  background: white;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.12);
+  transition: box-shadow 0.3s ease-out, transform 0.3s ease-out;
+  transition-delay: 0.1s;
+  /* max-width: 300px; */
+}
+
+.cardpen:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: 0.05;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+}
+.cardpen:hover {
+  box-shadow: rgba(45, 45, 45, 0.05) 0px 2px 2px,
+    rgba(49, 49, 49, 0.05) 0px 4px 4px, rgba(42, 42, 42, 0.05) 0px 8px 8px,
+    rgba(32, 32, 32, 0.05) 0px 16px 16px, rgba(49, 49, 49, 0.05) 0px 32px 32px,
+    rgba(35, 35, 35, 0.05) 0px 64px 64px;
+  transform: translate(0, -0.4rem);
+}
+.cardpen:hover:after {
+  opacity: 0;
+}
+.card__details {
+  position: relative;
+  z-index: 1;
+  padding: 0px;
+  background: #fff;
+  color: #393939;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+@media (max-width: 650px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    /* grid-auto-rows: 290px; */
+  }
+}
+
 /* GRID STYLE PRODUCT ITEM */
 .card-product-grid {
   margin-bottom: 20px;

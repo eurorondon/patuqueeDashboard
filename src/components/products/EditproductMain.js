@@ -57,14 +57,21 @@ const EditProductMain = (props) => {
         setName(product.name);
         setDescription(product.description);
         setCountInStock(product.countInStock);
-        setImage(product.image[0]);
-        setImage2(product.image[1]);
-        setImage3(product.image[2]);
-        setImage4(product.image[3]);
+        if (product.photo && product.photo.length > 1) {
+          console.log(product.photo[0].url);
+
+          setImage(product.photo[0].url);
+
+          console.log(typeof product.photo);
+          console.log(Object.values(product.photo));
+          // setImage2(product.photo[1].url);
+          // setImage3(product.photo[2].url);
+          // setImage4(product.photo[3].url);
+        }
         setPrice(product.price);
-        setCategories(product.categories[0]);
-        setCategories2(product.categories[1]);
-        setCategories3(product.categories[2]);
+        setCategories(product.photo[0]);
+        // setCategories2(product.categories[1]);
+        // setCategories3(product.categories[2]);
       }
     }
   }, [product, dispatch, productId, successUpdate]);
@@ -215,7 +222,25 @@ const EditProductMain = (props) => {
                         ></textarea>
                       </div>
                       <div className="mb-4">
-                        <label className="form-label">Images1</label>
+                        {product.photo && product.photo.length && (
+                          <div className="grid">
+                            {Object.values(product.photo).map((photoUrl) => (
+                              <div
+                                className="d-flex "
+                                style={{ maxWidth: "10rem" }}
+                              >
+                                <img
+                                  key={photoUrl}
+                                  src={photoUrl.url}
+                                  alt="Product"
+                                  style={{ maxWidth: "10rem" }}
+                                />
+                              </div>
+                            ))}
+                          </div>
+                        )}
+
+                        {/* <label className="form-label">Images1</label>
                         <input
                           className="form-control"
                           type="text"
@@ -280,7 +305,7 @@ const EditProductMain = (props) => {
                             alt=""
                             style={{ maxWidth: "10rem" }}
                           />
-                        </div>
+                        </div> */}
                       </div>
                     </>
                   )}

@@ -197,7 +197,7 @@ const AddProductMain = () => {
                     ></textarea>
                   </div>
                   <div className="mb-4">
-                    <label className="form-label">Images</label>
+                    {/* <label className="form-label">Images</label>
                     <input
                       className="form-control"
                       type="text"
@@ -232,7 +232,7 @@ const AddProductMain = () => {
                       value={image4}
                       // required
                       onChange={(e) => setImage4(e.target.value)}
-                    />
+                    /> */}
                     <input
                       className="form-control mt-3"
                       type="file"
