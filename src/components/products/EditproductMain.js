@@ -33,6 +33,7 @@ const EditProductMain = (props) => {
   const [categories2, setCategories2] = useState("");
   const [categories3, setCategories3] = useState("");
   const [catTotal, setCatTotal] = useState([]);
+  const [photos, setPhotos] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -58,20 +59,12 @@ const EditProductMain = (props) => {
         setDescription(product.description);
         setCountInStock(product.countInStock);
         if (product.photo && product.photo.length > 1) {
-          console.log(product.photo[0].url);
-
-          setImage(product.photo[0].url);
-
-          console.log(typeof product.photo);
-          console.log(Object.values(product.photo));
-          // setImage2(product.photo[1].url);
-          // setImage3(product.photo[2].url);
-          // setImage4(product.photo[3].url);
+          setPhotos(product.photo[0].url);
         }
         setPrice(product.price);
-        setCategories(product.photo[0]);
-        // setCategories2(product.categories[1]);
-        // setCategories3(product.categories[2]);
+        setCategories(product.categories[0]);
+        setCategories2(product.categories[1]);
+        setCategories3(product.categories[2]);
       }
     }
   }, [product, dispatch, productId, successUpdate]);
@@ -88,11 +81,26 @@ const EditProductMain = (props) => {
         name,
         price,
         description,
-        image: filteredArray,
         countInStock,
-        categories: [categories, categories2, categories3],
+        categories: categories.charAt(0).toUpperCase(1) + categories.slice(1),
+        categories2:
+          categories2.charAt(0).toUpperCase(1) + categories2.slice(1),
+        categories3:
+          categories3.charAt(0).toUpperCase(1) + categories3.slice(1),
+
+        // categories2.charAt(0).toUpperCase(1) + categories2.slice(1),
+        // categories3.charAt(0).toUpperCase(1) + categories3.slice(1),
+
+        photos,
       })
     );
+  };
+
+  const handleChange = (e) => {
+    const selectedFiles = e.target.files;
+    // como selectedFiles es un objeto, debemos convertirlo en arreglo
+    const filesArray = Array.from(selectedFiles);
+    setPhotos(filesArray);
   };
 
   return (
@@ -223,12 +231,9 @@ const EditProductMain = (props) => {
                       </div>
                       <div className="mb-4">
                         {product.photo && product.photo.length && (
-                          <div className="grid">
+                          <div className="grid ">
                             {Object.values(product.photo).map((photoUrl) => (
-                              <div
-                                className="d-flex "
-                                style={{ maxWidth: "10rem" }}
-                              >
+                              <div className=" " style={{ maxWidth: "10rem" }}>
                                 <img
                                   key={photoUrl}
                                   src={photoUrl.url}
@@ -239,73 +244,13 @@ const EditProductMain = (props) => {
                             ))}
                           </div>
                         )}
-
-                        {/* <label className="form-label">Images1</label>
                         <input
-                          className="form-control"
-                          type="text"
-                          value={image}
-                          // required
-                          onChange={(e) => setImage(e.target.value)}
+                          className="form-control mt-3"
+                          type="file"
+                          name="photo"
+                          multiple
+                          onChange={(e) => handleChange(e)}
                         />
-                        <div className="d-flex justify-content-end mt-2">
-                          <img
-                            src={image}
-                            alt=""
-                            style={{ maxWidth: "10rem" }}
-                          />
-                        </div>
-                      </div>
-                      <div className="mb-4">
-                        <label className="form-label">Images2</label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          value={image2}
-                          // required
-                          onChange={(e) => setImage2(e.target.value)}
-                        />
-                        <div className="d-flex justify-content-end mt-2">
-                          <img
-                            src={image2}
-                            alt=""
-                            style={{ maxWidth: "10rem" }}
-                          />
-                        </div>
-                      </div>
-                      <div className="mb-4">
-                        <label className="form-label">Images3</label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          value={image3}
-                          // required
-                          onChange={(e) => setImage3(e.target.value)}
-                        />
-                        <div className="d-flex justify-content-end mt-2">
-                          <img
-                            src={image3}
-                            alt=""
-                            style={{ maxWidth: "10rem" }}
-                          />
-                        </div>
-                      </div>
-                      <div className="mb-4">
-                        <label className="form-label">Images4</label>
-                        <input
-                          className="form-control"
-                          type="text"
-                          value={image4}
-                          // required
-                          onChange={(e) => setImage4(e.target.value)}
-                        />
-                        <div className="d-flex justify-content-end mt-2">
-                          <img
-                            src={image4}
-                            alt=""
-                            style={{ maxWidth: "10rem" }}
-                          />
-                        </div> */}
                       </div>
                     </>
                   )}

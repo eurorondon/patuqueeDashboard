@@ -85,7 +85,6 @@ export const deleteProduct = (id) => async (dispatch, getState) => {
 };
 
 // CREATE PRODUCT
-// CREATE PRODUCT
 export const createProduct =
   (
     photos,
@@ -171,7 +170,37 @@ export const editProduct = (id) => async (dispatch) => {
 
 // UPDATE PRODUCT
 export const updateProduct = (product) => async (dispatch, getState) => {
-  console.log(product);
+  const {
+    categories,
+    categories2,
+    categories3,
+    countInStock,
+    description,
+    name,
+    price,
+    photos,
+  } = product;
+  const form = new FormData();
+
+  form.append("name", name);
+  form.append("price", price);
+  form.append("countInStock", countInStock);
+  form.append("description", description);
+  form.append("categories", categories);
+  form.append("categories", categories2);
+  form.append("categories", categories3);
+
+  // photos.forEach((photo) => {
+  //   form.append("photo", photo);
+  //   console.log(photo);
+  // });
+  if (Array.isArray(photos)) {
+    photos.forEach((photo) => {
+      form.append("photo", photo);
+      console.log(photo);
+    });
+  }
+
   try {
     dispatch({ type: PRODUCT_UPDATE_REQUEST });
 
@@ -181,18 +210,17 @@ export const updateProduct = (product) => async (dispatch, getState) => {
 
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        // "Content-Type": "application/json",
+        "Content-Type": "multipart/form-data",
         Authorization: `Bearer ${userInfo.token}`,
       },
     };
 
     const { data } = await axios.put(
       `${URL}/api/products/${product._id}`,
-      product,
+      form,
       config
     );
-
-    console.log(product);
 
     dispatch({ type: PRODUCT_UPDATE_SUCCESS, payload: data });
     dispatch({ type: PRODUCT_EDIT_SUCCESS, payload: data });

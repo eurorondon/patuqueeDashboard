@@ -71,9 +71,9 @@ const AddProductMain = () => {
         image3,
         image4,
         countInStock,
-        category,
-        category2,
-        category3
+        category.charAt(0).toUpperCase() + category.slice(1),
+        category2.charAt(0).toUpperCase() + category2.slice(1),
+        category3.charAt(0).toUpperCase() + category3.slice(1)
       )
     );
   };
