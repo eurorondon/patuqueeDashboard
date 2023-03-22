@@ -19,37 +19,41 @@ import axios from "axios";
 import { logout } from "./userActions";
 import { URL } from "./../Url";
 
-export const listProducts = () => async (dispatch, getState) => {
-  try {
-    dispatch({ type: PRODUCT_LIST_REQUEST });
+export const listProducts =
+  (keyword = "", pageNumber = "", category = "") =>
+  async (dispatch, getState) => {
+    try {
+      dispatch({ type: PRODUCT_LIST_REQUEST });
 
-    const {
-      userLogin: { userInfo },
-    } = getState();
+      const {
+        userLogin: { userInfo },
+      } = getState();
 
-    const config = {
-      headers: {
-        Authorization: `Bearer ${userInfo.token}`,
-      },
-    };
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`,
+        },
+      };
 
-    const { data } = await axios.get(`${URL}/api/products/all`, config);
-
-    dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data });
-  } catch (error) {
-    const message =
-      error.response && error.response.data.message
-        ? error.response.data.message
-        : error.message;
-    if (message === "Not authorized, token failed") {
-      dispatch(logout());
+      const { data } = await axios.get(
+        `${URL}/api/products?keyword=${keyword}&pageNumber=${pageNumber}&category=${category}`,
+        config
+      );
+      dispatch({ type: PRODUCT_LIST_SUCCESS, payload: data.products });
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      if (message === "Not authorized, token failed") {
+        dispatch(logout());
+      }
+      dispatch({
+        type: PRODUCT_LIST_FAIL,
+        payload: message,
+      });
     }
-    dispatch({
-      type: PRODUCT_LIST_FAIL,
-      payload: message,
-    });
-  }
-};
+  };
 
 // DELETE PRODUCT
 export const deleteProduct = (id) => async (dispatch, getState) => {
@@ -127,7 +131,6 @@ export const createProduct =
 
       photos.forEach((photo) => {
         form.append("photo", photo);
-        console.log(photo);
       });
 
       const { data } = await axios.post(`${URL}/api/products/`, form, config);
@@ -197,7 +200,6 @@ export const updateProduct = (product) => async (dispatch, getState) => {
   if (Array.isArray(photos)) {
     photos.forEach((photo) => {
       form.append("photo", photo);
-      console.log(photo);
     });
   }
 

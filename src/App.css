@@ -987,3 +987,47 @@ ul.row-sm {
   line-height: 0.7;
   vertical-align: bottom;
 }
+/* PAGINATION */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.pagination ul {
+  display: flex;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.pagination li {
+  margin: 0 1px;
+}
+
+.pagination a {
+  display: block;
+  color: #333;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.pagination a:hover {
+  background-color: #ccc;
+}
+
+.pagination .active a {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+  cursor: default;
+}
+
+.pagination .disabled a {
+  color: #ccc;
+  pointer-events: none;
+  cursor: default;
+}
