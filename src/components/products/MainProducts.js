@@ -6,6 +6,7 @@ import { listProducts } from "../../Redux/Actions/ProductActions";
 import Loading from "../LoadingError/Loading";
 import Message from "../LoadingError/Error";
 import ReactPaginate from "react-paginate";
+import { ArrowBack, ArrowForward, Search } from "@material-ui/icons";
 
 const MainProducts = () => {
   const dispatch = useDispatch();
@@ -69,12 +70,28 @@ const MainProducts = () => {
           <div className="row gx-3 py-3">
             <form action="" onSubmit={submitHandler}>
               <div className="col-lg-4 col-md-6 me-auto ">
-                <input
-                  type="search"
-                  placeholder="Buscar..."
-                  className="form-control p-2"
-                  onChange={(e) => setSearch(e.target.value)}
-                />
+                <div className="d-flex">
+                  <input
+                    type="search"
+                    placeholder="Buscar..."
+                    className="form-control p-2"
+                    onChange={(e) => setSearch(e.target.value)}
+                  />
+                  <div>
+                    <button className="btn btn-success p-2" type="submit">
+                      <Search />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <div className=""></div>
+              <div>
+                <button
+                  className="btn btn-danger mt-3"
+                  onClick={() => setKeyword("")}
+                >
+                  Reset Busqueda
+                </button>
               </div>
 
               {/* <div className="col-lg-2 col-6 col-md-3">
@@ -111,14 +128,6 @@ const MainProducts = () => {
                 </select>
               </div> */}
             </form>
-            <div>
-              <button
-                className="btn btn-danger mt-3"
-                onClick={() => setKeyword("")}
-              >
-                Reset Busqueda
-              </button>
-            </div>
           </div>
         </header>
 
@@ -143,11 +152,11 @@ const MainProducts = () => {
             containerClassName={"pagination"}
             activeClassName={"active"}
             breakLabel="..."
-            nextLabel="next >"
+            nextLabel={<ArrowForward style={{ fontSize: "16px" }} />}
             onPageChange={handlePageClick}
             pageRangeDisplayed={5}
             pageCount={Math.ceil(totalPosts / postsPerPage)}
-            previousLabel="< prev"
+            previousLabel={<ArrowBack style={{ fontSize: "16px" }} />}
             renderOnZeroPageCount={null}
           />
         </div>
