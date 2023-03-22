@@ -85,12 +85,12 @@ const AddProductMain = () => {
         <form onSubmit={submitHandler}>
           <div className="content-header">
             <Link to="/products" className="btn btn-danger text-white">
-              Go to products
+              Ir a Productos
             </Link>
-            <h2 className="content-title">Add product</h2>
+            <h2 className="content-title">Nuevo Producto</h2>
             <div>
               <button type="submit" className="btn btn-primary">
-                Publish now
+                Publicar Ahora
               </button>
             </div>
           </div>
@@ -103,11 +103,11 @@ const AddProductMain = () => {
                   {loading && <Loading />}
                   <div className="mb-4">
                     <label htmlFor="product_title" className="form-label">
-                      Product title
+                      Titulo de Producto
                     </label>
                     <input
                       type="text"
-                      placeholder="Type here"
+                      placeholder="Escribir aqui"
                       className="form-control"
                       id="product_title"
                       required
@@ -117,11 +117,11 @@ const AddProductMain = () => {
                   </div>
                   <div className="mb-4">
                     <label htmlFor="product_title" className="form-label">
-                      Category
+                      Categoria
                     </label>
                     <input
                       type="text"
-                      placeholder="Type here"
+                      placeholder="Escribir aqui"
                       className="form-control"
                       id=""
                       // required
@@ -131,11 +131,11 @@ const AddProductMain = () => {
                   </div>
                   <div className="mb-4">
                     <label htmlFor="product_title" className="form-label">
-                      Category 2
+                      Categoria 2
                     </label>
                     <input
                       type="text"
-                      placeholder="Type here"
+                      placeholder="Opcional"
                       className="form-control"
                       id="product_title"
                       // required
@@ -145,11 +145,11 @@ const AddProductMain = () => {
                   </div>
                   <div className="mb-4">
                     <label htmlFor="product_title" className="form-label">
-                      Category 3
+                      Categoria 3
                     </label>
                     <input
                       type="text"
-                      placeholder="Type here"
+                      placeholder="Opcional"
                       className="form-control"
                       id="product_title"
                       // required
@@ -159,7 +159,7 @@ const AddProductMain = () => {
                   </div>
                   <div className="mb-4">
                     <label htmlFor="product_price" className="form-label">
-                      Price
+                      Precio
                     </label>
                     <input
                       type="number"
@@ -173,7 +173,7 @@ const AddProductMain = () => {
                   </div>
                   <div className="mb-4">
                     <label htmlFor="product_price" className="form-label">
-                      Count In Stock
+                      Cantidad en Stock
                     </label>
                     <input
                       type="number"
@@ -186,9 +186,9 @@ const AddProductMain = () => {
                     />
                   </div>
                   <div className="mb-4">
-                    <label className="form-label">Description</label>
+                    <label className="form-label">Descripcion</label>
                     <textarea
-                      placeholder="Type here"
+                      placeholder="Escribir aqui"
                       className="form-control"
                       rows="7"
                       // required
@@ -238,6 +238,7 @@ const AddProductMain = () => {
                       type="file"
                       name="photo"
                       multiple
+                      required
                       onChange={(e) => handleChange(e)}
                     />
                   </div>

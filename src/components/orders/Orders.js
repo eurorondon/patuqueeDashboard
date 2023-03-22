@@ -8,14 +8,14 @@ const Orders = (props) => {
     <table className="table">
       <thead>
         <tr>
-          <th scope="col">Name</th>
+          <th scope="col">Nombre</th>
           <th scope="col">Email</th>
           <th scope="col">Total</th>
-          <th scope="col">Paid</th>
-          <th scope="col">Date</th>
+          <th scope="col">Pagado</th>
+          <th scope="col">Fecha</th>
           <th>Status</th>
           <th scope="col" className="text-end">
-            Action
+            Detalle
           </th>
         </tr>
       </thead>

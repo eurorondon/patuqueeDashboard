@@ -11,11 +11,11 @@ const OrderMain = () => {
   return (
     <section className="content-main">
       <div className="content-header">
-        <h2 className="content-title">Orders</h2>
+        <h2 className="content-title">Ordenes</h2>
       </div>
 
       <div className="card mb-4 shadow-sm">
-        <header className="card-header bg-white">
+        {/* <header className="card-header bg-white">
           <div className="row gx-3 py-3">
             <div className="col-lg-4 col-md-6 me-auto">
               <input
@@ -40,7 +40,7 @@ const OrderMain = () => {
               </select>
             </div>
           </div>
-        </header>
+        </header> */}
         <div className="card-body">
           <div className="table-responsive">
             {loading ? (

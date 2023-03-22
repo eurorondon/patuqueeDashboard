@@ -17,16 +17,16 @@ const UserComponent = () => {
   return (
     <section className="content-main">
       <div className="content-header">
-        <h2 className="content-title">Customers</h2>
-        <div>
+        <h2 className="content-title">Clientes</h2>
+        {/* <div>
           <Link to="#" className="btn btn-primary">
             <i className="material-icons md-plus"></i> Create new
           </Link>
-        </div>
+        </div> */}
       </div>
 
       <div className="card mb-4">
-        <header className="card-header">
+        {/* <header className="card-header">
           <div className="row gx-3">
             <div className="col-lg-4 col-md-6 me-auto">
               <input
@@ -51,7 +51,7 @@ const UserComponent = () => {
               </select>
             </div>
           </div>
-        </header>
+        </header> */}
 
         {/* Card */}
         <div className="card-body">

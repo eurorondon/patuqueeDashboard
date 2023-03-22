@@ -14,16 +14,15 @@ const Main = () => {
     <>
       <section className="content-main">
         <div className="content-header">
-          <h2 className="content-title"> Dashboard </h2>
+          <h2 className="content-title"> Panel Admin </h2>
         </div>
         {/* Top Total */}
         <TopTotal orders={orders} products={products} />
 
-        <div className="row">
-          {/* STATICS */}
+        {/* <div className="row">
           <SaleStatistics />
           <ProductsStatistics />
-        </div>
+        </div> */}
 
         {/* LATEST ORDER */}
         <div className="card mb-4 shadow-sm">
