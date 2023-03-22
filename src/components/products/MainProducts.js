@@ -35,12 +35,14 @@ const MainProducts = () => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
     scroll(0, 0);
+
     // history.push(`?page=${selectedPage}`);
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
     setKeyword(search);
+    setCurrentPage(0);
   };
   const handleCategoria = (e) => {
     setCategory(e.target.value);
