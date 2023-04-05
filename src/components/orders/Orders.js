@@ -9,6 +9,7 @@ const Orders = (props) => {
       <thead>
         <tr>
           <th scope="col">Nombre</th>
+          <th scope="col">Telefono</th>
           <th scope="col">Email</th>
           <th scope="col">Total</th>
           <th scope="col">Pagado</th>
@@ -24,6 +25,9 @@ const Orders = (props) => {
           <tr key={order._id}>
             <td>
               <b>{order.user.name}</b>
+            </td>
+            <td>
+              <b>{order.user.number}</b>
             </td>
             <td>{order.user.email}</td>
             <td>${order.totalPrice}</td>
