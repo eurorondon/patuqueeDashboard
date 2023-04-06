@@ -18,7 +18,7 @@ const Product = (props) => {
     <>
       <div className="col-md-6 col-sm-6 col-lg-3 mb-5">
         <div className="card card-product-grid shadow-sm">
-          <Link to="#" className="img-wrap">
+          <Link to={`/product/${product._id}/edit`} className="img-wrap">
             {product.photo[0].url ? (
               <img src={product.photo[0].url} alt="Product" />
             ) : (

@@ -10,6 +10,7 @@ import { PRODUCT_UPDATE_RESET } from "../../Redux/Constants/ProductConstants";
 import { toast } from "react-toastify";
 import Message from "../LoadingError/Error";
 import Loading from "../LoadingError/Loading";
+import { Undo } from "@material-ui/icons";
 
 const ToastObjects = {
   pauseOnFocusLoss: false,
@@ -50,7 +51,7 @@ const EditProductMain = (props) => {
   useEffect(() => {
     if (successUpdate) {
       dispatch({ type: PRODUCT_UPDATE_RESET });
-      toast.success("Product Updated", ToastObjects);
+      toast.success("Producto actualizado", ToastObjects);
     } else {
       if (!product.name || product._id !== productId) {
         dispatch(editProduct(productId));
@@ -82,11 +83,19 @@ const EditProductMain = (props) => {
         price,
         description,
         countInStock,
-        categories: categories.charAt(0).toUpperCase(1) + categories.slice(1),
+        categories:
+          (categories ?? "").charAt(0).toUpperCase(1) +
+          (categories2 ?? "").slice(1),
+
+        // Este código asigna una cadena vacía ('') a la variable categories2 si es null o undefined, lo que permite que la función slice() se llame sin causar un error.
+
         categories2:
-          categories2.charAt(0).toUpperCase(1) + categories2.slice(1),
+          (categories2 ?? "").charAt(0).toUpperCase(1) +
+          (categories2 ?? "").slice(1),
+
         categories3:
-          categories3.charAt(0).toUpperCase(1) + categories3.slice(1),
+          (categories3 ?? "").charAt(0).toUpperCase(1) +
+          (categories2 ?? "").slice(1),
 
         // categories2.charAt(0).toUpperCase(1) + categories2.slice(1),
         // categories3.charAt(0).toUpperCase(1) + categories3.slice(1),
@@ -109,13 +118,20 @@ const EditProductMain = (props) => {
       <section className="content-main" style={{ maxWidth: "1200px" }}>
         <form onSubmit={submitHandler}>
           <div className="content-header">
-            <Link to="/products" className="btn btn-danger text-white">
+            <div
+              className="btn btn-danger text-white"
+              onClick={() => window.history.go(-1)}
+            >
+              <Undo className="me-1" />
+              Atrás
+            </div>
+            {/* <Link to="/products" className="btn btn-danger text-white">
               Go to products
-            </Link>
-            <h2 className="content-title">Update Product</h2>
+            </Link> */}
+            <h2 className="content-title">Editar Producto</h2>
             <div>
               <button type="submit" className="btn btn-primary">
-                Publish now
+                Publicar
               </button>
             </div>
           </div>

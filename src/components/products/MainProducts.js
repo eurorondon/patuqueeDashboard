@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useHistory, useParams, useLocation } from "react-router-dom";
+import { Link, withRouter, useHistory } from "react-router-dom";
 import Product from "./Product";
 import { useDispatch, useSelector } from "react-redux";
 import { listProducts } from "../../Redux/Actions/ProductActions";
@@ -10,6 +10,7 @@ import { ArrowBack, ArrowForward, Search } from "@material-ui/icons";
 
 const MainProducts = () => {
   const dispatch = useDispatch();
+  let history = useHistory();
 
   const [keyword, setKeyword] = useState();
   const [category, setCategory] = useState("");
@@ -25,6 +26,11 @@ const MainProducts = () => {
     dispatch(listProducts());
   }, [dispatch, successDelete]);
 
+  useEffect(() => {
+    console.log(category);
+    dispatch(listProducts(keyword, category));
+  }, [dispatch, keyword, category]);
+
   const [currentPage, setCurrentPage] = useState(0);
   const [postsPerPage, setPostsPerPage] = useState(24);
   const indexOfLastPost = (currentPage + 1) * postsPerPage;
@@ -32,13 +38,39 @@ const MainProducts = () => {
   const currentPosts = products.slice(indexOfFirstPost, indexOfLastPost);
   const totalPosts = products.length;
 
+  // DESDE AQUI FUNCIONA LA PAGINAGION
+
+  useEffect(() => {
+    localStorage.setItem("currentPage", JSON.stringify(currentPage));
+  }, [currentPage]);
+
+  useEffect(() => {
+    const storedPage = localStorage.getItem("currentPage");
+    if (storedPage) {
+      setCurrentPage(JSON.parse(storedPage));
+    } else {
+      setCurrentPage(location.state?.currentPage || 0);
+    }
+  }, [location.state?.currentPage]);
+
+  const url = window.location.href;
+  const match = url.match(/\d+$/);
+
+  useEffect(() => {
+    if (url.includes("page")) {
+      const match = url.match(/\d+$/);
+      setCurrentPage(match[0] * 1);
+    }
+  }, []);
+
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
     scroll(0, 0);
-
-    // history.push(`?page=${selectedPage}`);
+    history.push(`?page=${selectedPage}`);
   };
+
+  //AQUI TERMINA FUNCIONES DE PAGINACION
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -48,11 +80,6 @@ const MainProducts = () => {
   const handleCategoria = (e) => {
     setCategory(e.target.value);
   };
-
-  useEffect(() => {
-    console.log(category);
-    dispatch(listProducts(keyword, category));
-  }, [dispatch, keyword, category]);
 
   return (
     <section className="content-main">
@@ -149,15 +176,16 @@ const MainProducts = () => {
           )}
 
           <ReactPaginate
+            previousLabel={<ArrowBack />}
+            nextLabel={<ArrowForward />}
+            totalPosts={products.length}
+            pageCount={Math.ceil(totalPosts / postsPerPage)}
+            marginPagesDisplayed={1}
+            pageRangeDisplayed={3} // Aquí estableces el número de botones de página a mostrar
+            onPageChange={handlePageClick}
             containerClassName={"pagination"}
             activeClassName={"active"}
-            breakLabel="..."
-            nextLabel={<ArrowForward style={{ fontSize: "16px" }} />}
-            onPageChange={handlePageClick}
-            pageRangeDisplayed={5}
-            pageCount={Math.ceil(totalPosts / postsPerPage)}
-            previousLabel={<ArrowBack style={{ fontSize: "16px" }} />}
-            renderOnZeroPageCount={null}
+            forcePage={currentPage}
           />
         </div>
       </div>
