@@ -10,11 +10,12 @@ const OrderDetailInfo = (props) => {
             <i className="text-success fas fa-user"></i>
           </span>
           <div className="text">
-            <h6 className="mb-1">Customer</h6>
+            <h6 className="mb-1">Cliente</h6>
             <p className="mb-1">
               {order.user.name} <br />
               <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
             </p>
+            <p>Telefono: {order.user.number}</p>
           </div>
         </article>
       </div>

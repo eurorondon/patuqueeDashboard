@@ -22,6 +22,9 @@ const LatestOrder = (props) => {
                   <td>
                     <b>{order.user.name}</b>
                   </td>
+                  <td>
+                    <b>{order.user.number}</b>
+                  </td>
                   <td>{order.user.email}</td>
                   <td>${order.totalPrice}</td>
                   <td>

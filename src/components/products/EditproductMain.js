@@ -85,7 +85,7 @@ const EditProductMain = (props) => {
         countInStock,
         categories:
           (categories ?? "").charAt(0).toUpperCase(1) +
-          (categories2 ?? "").slice(1),
+          (categories ?? "").slice(1),
 
         // Este código asigna una cadena vacía ('') a la variable categories2 si es null o undefined, lo que permite que la función slice() se llame sin causar un error.
 
@@ -95,7 +95,7 @@ const EditProductMain = (props) => {
 
         categories3:
           (categories3 ?? "").charAt(0).toUpperCase(1) +
-          (categories2 ?? "").slice(1),
+          (categories3 ?? "").slice(1),
 
         // categories2.charAt(0).toUpperCase(1) + categories2.slice(1),
         // categories3.charAt(0).toUpperCase(1) + categories3.slice(1),
@@ -226,6 +226,7 @@ const EditProductMain = (props) => {
                         </label>
                         <input
                           type="number"
+                          pattern="^\d+$"
                           placeholder="Type here"
                           className="form-control"
                           id="product_price"
