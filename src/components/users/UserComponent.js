@@ -83,6 +83,7 @@ const UserComponent = () => {
                         <p>
                           <a href={`mailto:${user.email}`}>{user.email}</a>
                         </p>
+                        <p>Telef: {user.number}</p>
                       </div>
                     </div>
                   </div>
