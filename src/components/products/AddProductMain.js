@@ -7,6 +7,7 @@ import { createProduct } from "./../../Redux/Actions/ProductActions";
 import Toast from "../LoadingError/Toast";
 import Message from "../LoadingError/Error";
 import Loading from "../LoadingError/Loading";
+import { listCategory } from "../../Redux/Actions/CategoryActions";
 
 const ToastObjects = {
   pauseOnFocusLoss: false,
@@ -33,6 +34,9 @@ const AddProductMain = () => {
   const productCreate = useSelector((state) => state.productCreate);
   const { loading, error, product } = productCreate;
 
+  const categoriesList = useSelector((state) => state.categorylist);
+  console.log(categoriesList);
+
   useEffect(() => {
     if (product) {
       toast.success("Product Added", ToastObjects);
@@ -47,6 +51,7 @@ const AddProductMain = () => {
       setCategory2("");
       setCategory3("");
     }
+    dispatch(listCategory());
   }, [product, dispatch]);
 
   const handleChange = (e) => {
@@ -117,16 +122,22 @@ const AddProductMain = () => {
                     <label htmlFor="product_title" className="form-label">
                       Categoria
                     </label>
-                    <input
-                      type="text"
-                      placeholder="Escribir aqui"
-                      className="form-control"
-                      id=""
-                      // required
-                      value={category}
-                      onChange={(e) => setCategory(e.target.value)}
-                    />
+                    <div className="custom-select-wrapper">
+                      <select
+                        className="form-control "
+                        // value={selectedCategory}
+                        onChange={(e) => setCategory(e.target.value)}
+                      >
+                        <option value="">Seleccione una categoría</option>
+                        {categoriesList.categories.map((category) => (
+                          <option key={category._id} value={category.categoria}>
+                            {category.categoria}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
                   </div>
+
                   <div className="mb-4">
                     <label htmlFor="product_title" className="form-label">
                       Categoria 2

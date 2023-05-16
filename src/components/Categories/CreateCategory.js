@@ -43,10 +43,6 @@ const CreateCategory = () => {
     }
   }, [categoryCreate.success, dispatch]);
 
-  // useEffect(() => {
-  //   dispatch(listCategory());
-  // }, []);
-
   return (
     <div className="col-md-12 col-lg-4">
       <form onSubmit={submitHandler}>

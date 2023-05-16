@@ -16,7 +16,7 @@ const MainCategories = () => {
 
   useEffect(() => {
     dispatch(listCategory());
-  }, [dispatch, CATEGORY_CREATE_SUCCESS]);
+  }, [dispatch]);
 
   return (
     <section className="content-main">

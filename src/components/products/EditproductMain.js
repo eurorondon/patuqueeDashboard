@@ -48,6 +48,8 @@ const EditProductMain = (props) => {
     success: successUpdate,
   } = productUpdate;
 
+  const categoriesList = useSelector((state) => state.categorylist);
+
   useEffect(() => {
     if (successUpdate) {
       dispatch({ type: PRODUCT_UPDATE_RESET });
@@ -168,7 +170,7 @@ const EditProductMain = (props) => {
                         <label htmlFor="product_title" className="form-label">
                           Categories
                         </label>
-                        <input
+                        {/* <input
                           type="text"
                           placeholder="Type here"
                           className="form-control"
@@ -176,7 +178,24 @@ const EditProductMain = (props) => {
                           // required
                           value={categories}
                           onChange={(e) => setCategories(e.target.value)}
-                        />
+                        /> */}
+                        <div className="custom-select-wrapper">
+                          <select
+                            className="form-control "
+                            // value={selectedCategory}
+                            onChange={(e) => setCategories(e.target.value)}
+                          >
+                            <option value="">{categories}</option>
+                            {categoriesList.categories.map((category) => (
+                              <option
+                                key={category._id}
+                                value={category.categoria}
+                              >
+                                {category.categoria}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
                       </div>
                       <div className="mb-4">
                         <label htmlFor="product_title" className="form-label">

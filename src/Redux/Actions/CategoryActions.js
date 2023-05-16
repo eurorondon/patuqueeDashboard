@@ -5,10 +5,15 @@ import {
   CATEGORY_CREATE_REQUEST,
   CATEGORY_CREATE_SUCCESS,
   CATEGORY_CREATE_FAIL,
+  CATEGORY_DELETE_REQUEST,
+  CATEGORY_DELETE_SUCCESS,
+  CATEGORY_DELETE_FAIL,
 } from "../Constants/CategoryConstants";
 import axios from "axios";
 import { logout } from "./userActions";
 import { URL } from "./../Url";
+
+// LIST CATEGORY
 
 export const listCategory = () => async (dispatch) => {
   try {
@@ -55,6 +60,29 @@ export const createCategory = (categoria, descripcion) => async (dispatch) => {
 
     dispatch({
       type: CATEGORY_CREATE_FAIL,
+      payload: message,
+    });
+  }
+};
+
+// DELETE CATEGORY
+export const deleteCategory = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: CATEGORY_DELETE_REQUEST });
+
+    await axios.delete(`${URL}/api/category/${id}`);
+
+    dispatch({ type: CATEGORY_DELETE_SUCCESS });
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    if (message === "Not authorized, token failed") {
+      dispatch(logout());
+    }
+    dispatch({
+      type: CATEGORY_DELETE_FAIL,
       payload: message,
     });
   }
