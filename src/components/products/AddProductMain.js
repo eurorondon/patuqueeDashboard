@@ -28,8 +28,6 @@ const AddProductMain = () => {
   const [category2, setCategory2] = useState("");
   const [category3, setCategory3] = useState("");
 
-  console.log(countInStock);
-
   const dispatch = useDispatch();
 
   const productCreate = useSelector((state) => state.productCreate);

@@ -34,7 +34,6 @@ export const listOrders = () => async (dispatch, getState) => {
     // console.log(data);
 
     dispatch({ type: ORDER_LIST_SUCCESS, payload: data });
-    console.log(data);
   } catch (error) {
     const message =
       error.response && error.response.data.message

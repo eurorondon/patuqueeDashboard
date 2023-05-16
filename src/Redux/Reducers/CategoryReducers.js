@@ -1,32 +1,48 @@
 import {
-  PRODUCT_CREATE_FAIL,
-  PRODUCT_CREATE_REQUEST,
-  PRODUCT_CREATE_RESET,
-  PRODUCT_CREATE_SUCCESS,
-  PRODUCT_DELETE_FAIL,
-  PRODUCT_DELETE_REQUEST,
-  PRODUCT_DELETE_SUCCESS,
-  PRODUCT_EDIT_FAIL,
-  PRODUCT_EDIT_REQUEST,
-  PRODUCT_EDIT_SUCCESS,
-  PRODUCT_LIST_FAIL,
-  PRODUCT_LIST_REQUEST,
-  PRODUCT_LIST_SUCCESS,
-  PRODUCT_UPDATE_FAIL,
-  PRODUCT_UPDATE_REQUEST,
-  PRODUCT_UPDATE_RESET,
-  PRODUCT_UPDATE_SUCCESS,
-} from "../Constants/ProductConstants";
+  CATEGORY_CREATE_FAIL,
+  CATEGORY_CREATE_REQUEST,
+  CATEGORY_CREATE_RESET,
+  CATEGORY_CREATE_SUCCESS,
+  CATEGORY_DELETE_FAIL,
+  CATEGORY_DELETE_REQUEST,
+  CATEGORY_DELETE_SUCCESS,
+  CATEGORY_EDIT_FAIL,
+  CATEGORY_EDIT_REQUEST,
+  CATEGORY_EDIT_SUCCESS,
+  CATEGORY_LIST_FAIL,
+  CATEGORY_LIST_REQUEST,
+  CATEGORY_LIST_SUCCESS,
+  CATEGORY_UPDATE_FAIL,
+  CATEGORY_UPDATE_REQUEST,
+  CATEGORY_UPDATE_RESET,
+  CATEGORY_UPDATE_SUCCESS,
+} from "../Constants/CategoryConstants";
 
-// ALL PRODUCTS
-export const productListReducer = (state = { products: [] }, action) => {
+// GET PRODUCTS
+export const categoryListReducer = (state = { categories: [] }, action) => {
   switch (action.type) {
-    case PRODUCT_LIST_REQUEST:
-      return { loading: true, products: [] };
-    case PRODUCT_LIST_SUCCESS:
-      return { loading: false, products: action.payload };
-    case PRODUCT_LIST_FAIL:
+    case CATEGORY_LIST_REQUEST:
+      return { loading: true, categories: [] };
+    case CATEGORY_LIST_SUCCESS:
+      return { loading: false, categories: action.payload };
+    case CATEGORY_LIST_FAIL:
       return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+// CREATE PRODUCT
+export const categoryCreateReducer = (state = {}, action) => {
+  switch (action.type) {
+    case CATEGORY_CREATE_REQUEST:
+      return { loading: true };
+    case CATEGORY_CREATE_SUCCESS:
+      return { loading: false, success: true, categories: action.payload };
+    case CATEGORY_CREATE_FAIL:
+      return { loading: false, error: action.payload };
+    case CATEGORY_CREATE_RESET:
+      return {};
     default:
       return state;
   }
@@ -41,22 +57,6 @@ export const productDeleteReducer = (state = {}, action) => {
       return { loading: false, success: true };
     case PRODUCT_DELETE_FAIL:
       return { loading: false, error: action.payload };
-    default:
-      return state;
-  }
-};
-
-// CREATE PRODUCT
-export const productCreateReducer = (state = {}, action) => {
-  switch (action.type) {
-    case PRODUCT_CREATE_REQUEST:
-      return { loading: true };
-    case PRODUCT_CREATE_SUCCESS:
-      return { loading: false, success: true, product: action.payload };
-    case PRODUCT_CREATE_FAIL:
-      return { loading: false, error: action.payload };
-    case PRODUCT_CREATE_RESET:
-      return {};
     default:
       return state;
   }
