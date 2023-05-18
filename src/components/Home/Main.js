@@ -1,15 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TopTotal from "./TopTotal";
 import LatestOrder from "./LatestOrder";
 import SaleStatistics from "./SalesStatistics";
 import ProductsStatistics from "./ProductsStatistics";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { listCategory } from "../../Redux/Actions/CategoryActions";
 
 const Main = () => {
+  const dispatch = useDispatch();
   const orderList = useSelector((state) => state.orderList);
   const { loading, error, orders } = orderList;
   const productList = useSelector((state) => state.productList);
   const { products } = productList;
+  useEffect(() => {
+    dispatch(listCategory());
+  }, [dispatch]);
   return (
     <>
       <section className="content-main">

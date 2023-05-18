@@ -44,14 +44,14 @@ const MainProducts = () => {
     localStorage.setItem("currentPage", JSON.stringify(currentPage));
   }, [currentPage]);
 
-  useEffect(() => {
-    const storedPage = localStorage.getItem("currentPage");
-    if (storedPage) {
-      setCurrentPage(JSON.parse(storedPage));
-    } else {
-      setCurrentPage(location.state?.currentPage || 0);
-    }
-  }, [location.state?.currentPage]);
+  // useEffect(() => {
+  //   const storedPage = localStorage.getItem("currentPage");
+  //   if (storedPage) {
+  //     setCurrentPage(JSON.parse(storedPage));
+  //   } else {
+  //     setCurrentPage(location.state?.currentPage || 0);
+  //   }
+  // }, [location.state?.currentPage]);
 
   const url = window.location.href;
   const match = url.match(/\d+$/);
@@ -66,7 +66,7 @@ const MainProducts = () => {
   const handlePageClick = (data) => {
     const selectedPage = data.selected;
     setCurrentPage(selectedPage);
-    scroll(0, 0);
+    window.scroll(0, 0);
     history.push(`?page=${selectedPage}`);
   };
 

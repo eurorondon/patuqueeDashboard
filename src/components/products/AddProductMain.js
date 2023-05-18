@@ -140,7 +140,7 @@ const AddProductMain = () => {
 
                   <div className="mb-4">
                     <label htmlFor="product_title" className="form-label">
-                      Categoria 2
+                      Etiqueta
                     </label>
                     <input
                       type="text"
@@ -154,7 +154,7 @@ const AddProductMain = () => {
                   </div>
                   <div className="mb-4">
                     <label htmlFor="product_title" className="form-label">
-                      Categoria 3
+                      Etiqueta 2
                     </label>
                     <input
                       type="text"

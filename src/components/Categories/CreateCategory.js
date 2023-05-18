@@ -48,22 +48,22 @@ const CreateCategory = () => {
       <form onSubmit={submitHandler}>
         <div className="mb-4">
           <label htmlFor="product_name" className="form-label">
-            Name
+            <b> NUEVA CATEGORIA</b>
           </label>
           <input
             type="text"
-            placeholder="Type here"
+            placeholder="Nombre de Categoria"
             className="form-control py-3"
             id="product_name"
             value={categoryName}
             onChange={handleCategoryNameChange}
           />
         </div>
-        <div className="mb-4">
+        {/* <div className="mb-4">
           <label className="form-label">Images</label>
           <input className="form-control" type="file" />
-        </div>
-        <div className="mb-4">
+        </div> */}
+        {/* <div className="mb-4">
           <label className="form-label">Description</label>
           <textarea
             placeholder="Type here"
@@ -72,10 +72,10 @@ const CreateCategory = () => {
             value={descripcion}
             onChange={handleDescripcionChange}
           ></textarea>
-        </div>
+        </div> */}
 
         <div className="d-grid">
-          <button className="btn btn-primary py-3 ">Create category</button>
+          <button className="btn btn-primary py-3 ">Crear categoria</button>
         </div>
       </form>
     </div>

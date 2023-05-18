@@ -78,9 +78,10 @@ const Header = () => {
           <li className="dropdown nav-item">
             <Link className="dropdown-toggle" data-bs-toggle="dropdown" to="#">
               <img
-                className="img-xs rounded-circle"
+                className=""
                 src="/images/favicon.png"
                 alt="User"
+                style={{ maxWidth: "150px" }}
               />
             </Link>
             <div className="dropdown-menu dropdown-menu-end">

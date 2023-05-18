@@ -6,16 +6,9 @@ import {
   CATEGORY_DELETE_FAIL,
   CATEGORY_DELETE_REQUEST,
   CATEGORY_DELETE_SUCCESS,
-  CATEGORY_EDIT_FAIL,
-  CATEGORY_EDIT_REQUEST,
-  CATEGORY_EDIT_SUCCESS,
   CATEGORY_LIST_FAIL,
   CATEGORY_LIST_REQUEST,
   CATEGORY_LIST_SUCCESS,
-  CATEGORY_UPDATE_FAIL,
-  CATEGORY_UPDATE_REQUEST,
-  CATEGORY_UPDATE_RESET,
-  CATEGORY_UPDATE_SUCCESS,
 } from "../Constants/CategoryConstants";
 
 // GET PRODUCTS
@@ -57,39 +50,6 @@ export const categoryDeleteReducer = (state = {}, action) => {
       return { loading: false, success: true };
     case CATEGORY_DELETE_FAIL:
       return { loading: false, error: action.payload };
-    default:
-      return state;
-  }
-};
-
-// EDIT PRODUCT
-export const productEditReducer = (
-  state = { product: { reviews: [] } },
-  action
-) => {
-  switch (action.type) {
-    case PRODUCT_EDIT_REQUEST:
-      return { ...state, loading: true };
-    case PRODUCT_EDIT_SUCCESS:
-      return { loading: false, product: action.payload };
-    case PRODUCT_EDIT_FAIL:
-      return { loading: false, error: action.payload };
-    default:
-      return state;
-  }
-};
-
-// UPDATE PRODUCT
-export const productUpdateReducer = (state = { product: {} }, action) => {
-  switch (action.type) {
-    case PRODUCT_UPDATE_REQUEST:
-      return { loading: true };
-    case PRODUCT_UPDATE_SUCCESS:
-      return { loading: false, success: true, product: action.payload };
-    case PRODUCT_UPDATE_FAIL:
-      return { loading: false, error: action.payload };
-    case PRODUCT_UPDATE_RESET:
-      return { product: {} };
     default:
       return state;
   }

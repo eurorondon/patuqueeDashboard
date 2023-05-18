@@ -34,9 +34,9 @@ const CategoriesTable = ({ categories }) => {
                 <input className="form-check-input" type="checkbox" value="" />
               </div>
             </th>
-            <th>ID</th>
+            {/* <th>ID</th> */}
             <th>Name</th>
-            <th>Description</th>
+            {/* <th>Description</th> */}
             <th className="text-end">Action</th>
           </tr>
         </thead>
@@ -53,11 +53,11 @@ const CategoriesTable = ({ categories }) => {
                   />
                 </div>
               </td>
-              <td>{category._id}</td>
+              {/* <td>{category._id}</td> */}
               <td>
                 <b>{category.categoria}</b>
               </td>
-              <td>{category.description}</td>
+              {/* <td>{category.description}</td> */}
               <td className="text-end">
                 <div className="dropdown">
                   <Link
@@ -68,9 +68,9 @@ const CategoriesTable = ({ categories }) => {
                     <i className="fas fa-ellipsis-h"></i>
                   </Link>
                   <div className="dropdown-menu">
-                    <Link className="dropdown-item" to="#">
+                    {/* <Link className="dropdown-item" to="#">
                       Edit info
-                    </Link>
+                    </Link> */}
                     <Link
                       className="dropdown-item text-danger"
                       to="#"

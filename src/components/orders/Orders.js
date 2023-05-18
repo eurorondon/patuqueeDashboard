@@ -36,12 +36,12 @@ const Orders = (props) => {
               {order.isPaid ? (
                 <a href={order.comprobantePago} target="_blank">
                   <span className="badge rounded-pill alert-success">
-                    Paid At {moment(order.paidAt).format("MMM Do YY")}
+                    Pagado en {moment(order.paidAt).format("MMM Do YY")}
                   </span>
                 </a>
               ) : (
                 <span className="badge rounded-pill alert-danger">
-                  Not Paid
+                  No pagado
                 </span>
               )}
             </td>
