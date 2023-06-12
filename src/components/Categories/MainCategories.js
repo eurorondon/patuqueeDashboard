@@ -7,6 +7,7 @@ import {
   CATEGORY_CREATE_RESET,
   CATEGORY_CREATE_SUCCESS,
 } from "../../Redux/Constants/CategoryConstants";
+import Loading from "../LoadingError/Loading";
 
 const MainCategories = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ const MainCategories = () => {
         <h2 className="content-title"></h2>
       </div>
       {loading ? (
-        <h1 className="text-danger">Cargando</h1>
+        <Loading />
       ) : (
         <div className="card shadow-sm">
           <div className="card-body">

@@ -163,7 +163,9 @@ const MainProducts = () => {
             <Message variant="alert-danger">{errorDelete}</Message>
           )}
           {loading ? (
-            <Loading />
+            <div className="my-5">
+              <Loading />
+            </div>
           ) : error ? (
             <Message variant="alert-danger">{error}</Message>
           ) : (

@@ -77,6 +77,7 @@ const EditProductMain = (props) => {
 
   const submitHandler = (e) => {
     e.preventDefault();
+    window.scroll(0, 0);
 
     dispatch(
       updateProduct({
@@ -130,14 +131,9 @@ const EditProductMain = (props) => {
             {/* <Link to="/products" className="btn btn-danger text-white">
               Go to products
             </Link> */}
-            <h2 className="content-title">Editar Producto</h2>
-            <div>
-              <button type="submit" className="btn btn-primary">
-                Publicar
-              </button>
-            </div>
           </div>
 
+          <h2 className="content-title">Editar Producto</h2>
           <div className="row mb-4">
             <div className="col-xl-8 col-lg-8">
               <div className="card mb-4 shadow-sm">
@@ -168,7 +164,7 @@ const EditProductMain = (props) => {
                       </div>
                       <div className="mb-4">
                         <label htmlFor="product_title" className="form-label">
-                          Categories
+                          Categoria
                         </label>
                         {/* <input
                           type="text"
@@ -199,11 +195,11 @@ const EditProductMain = (props) => {
                       </div>
                       <div className="mb-4">
                         <label htmlFor="product_title" className="form-label">
-                          Categories2
+                          Etiqueta
                         </label>
                         <input
                           type="text"
-                          placeholder="Type here"
+                          placeholder="Opcional"
                           className="form-control"
                           id=""
                           // required
@@ -213,11 +209,11 @@ const EditProductMain = (props) => {
                       </div>
                       <div className="mb-4">
                         <label htmlFor="product_title" className="form-label">
-                          Categories3
+                          Etiqueta 2
                         </label>
                         <input
                           type="text"
-                          placeholder="Type here"
+                          placeholder="Opcional"
                           className="form-control"
                           id=""
                           // required
@@ -290,6 +286,11 @@ const EditProductMain = (props) => {
                       </div>
                     </>
                   )}
+                  <div>
+                    <button type="submit" className="btn btn-primary">
+                      Publicar
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

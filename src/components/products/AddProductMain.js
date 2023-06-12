@@ -90,123 +90,124 @@ const AddProductMain = () => {
             <Link to="/products" className="btn btn-danger text-white">
               Ir a Productos
             </Link>
-            <h2 className="content-title">Nuevo Producto</h2>
-            <div>
-              <button type="submit" className="btn btn-primary">
-                Publicar Ahora
-              </button>
-            </div>
           </div>
 
+          <h2 className="content-title">Nuevo Producto</h2>
           <div className="row mb-4">
             <div className="col-xl-8 col-lg-8">
               <div className="card mb-4 shadow-sm">
                 <div className="card-body">
                   {error && <Message variant="alert-danger">{error}</Message>}
-                  {loading && <Loading />}
-                  <div className="mb-4">
-                    <label htmlFor="product_title" className="form-label">
-                      Titulo de Producto
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Escribir aqui"
-                      className="form-control"
-                      id="product_title"
-                      required
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor="product_title" className="form-label">
-                      Categoria
-                    </label>
-                    <div className="custom-select-wrapper">
-                      <select
-                        className="form-control "
-                        // value={selectedCategory}
-                        onChange={(e) => setCategory(e.target.value)}
-                      >
-                        <option value="">Seleccione una categoría</option>
-                        {categoriesList.categories.map((category) => (
-                          <option key={category._id} value={category.categoria}>
-                            {category.categoria}
-                          </option>
-                        ))}
-                      </select>
-                    </div>
-                  </div>
+                  {loading ? (
+                    <Loading />
+                  ) : (
+                    <>
+                      <div className="mb-4">
+                        <label htmlFor="product_title" className="form-label">
+                          Titulo de Producto
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Escribir aqui"
+                          className="form-control"
+                          id="product_title"
+                          required
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                        />
+                      </div>
+                      <div className="mb-4">
+                        <label htmlFor="product_title" className="form-label">
+                          Categoria
+                        </label>
+                        <div className="custom-select-wrapper">
+                          <select
+                            className="form-control "
+                            // value={selectedCategory}
+                            onChange={(e) => setCategory(e.target.value)}
+                          >
+                            <option value="">Seleccione una categoría</option>
+                            {categoriesList.categories.map((category) => (
+                              <option
+                                key={category._id}
+                                value={category.categoria}
+                              >
+                                {category.categoria}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                      </div>
 
-                  <div className="mb-4">
-                    <label htmlFor="product_title" className="form-label">
-                      Etiqueta
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Opcional"
-                      className="form-control"
-                      id="product_title"
-                      // required
-                      value={category2}
-                      onChange={(e) => setCategory2(e.target.value)}
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor="product_title" className="form-label">
-                      Etiqueta 2
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Opcional"
-                      className="form-control"
-                      id="product_title"
-                      // required
-                      value={category3}
-                      onChange={(e) => setCategory3(e.target.value)}
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor="product_price" className="form-label">
-                      Precio
-                    </label>
-                    <input
-                      type="number"
-                      placeholder="Type here"
-                      className="form-control"
-                      id="product_price"
-                      required
-                      value={price}
-                      onChange={(e) => setPrice(e.target.value)}
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label htmlFor="product_price" className="form-label">
-                      Cantidad en Stock
-                    </label>
-                    <input
-                      type="number"
-                      placeholder="Type here"
-                      className="form-control"
-                      id="product_price"
-                      // required
-                      value={countInStock}
-                      onChange={(e) => setCountInStock(e.target.value)}
-                    />
-                  </div>
-                  <div className="mb-4">
-                    <label className="form-label">Descripcion</label>
-                    <textarea
-                      placeholder="Escribir aqui"
-                      className="form-control"
-                      rows="7"
-                      // required
-                      value={description}
-                      onChange={(e) => setDescription(e.target.value)}
-                    ></textarea>
-                  </div>
-                  <div className="mb-4">
-                    {/* <label className="form-label">Images</label>
+                      <div className="mb-4">
+                        <label htmlFor="product_title" className="form-label">
+                          Etiqueta
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Opcional"
+                          className="form-control"
+                          id="product_title"
+                          // required
+                          value={category2}
+                          onChange={(e) => setCategory2(e.target.value)}
+                        />
+                      </div>
+                      <div className="mb-4">
+                        <label htmlFor="product_title" className="form-label">
+                          Etiqueta 2
+                        </label>
+                        <input
+                          type="text"
+                          placeholder="Opcional"
+                          className="form-control"
+                          id="product_title"
+                          // required
+                          value={category3}
+                          onChange={(e) => setCategory3(e.target.value)}
+                        />
+                      </div>
+                      <div className="mb-4">
+                        <label htmlFor="product_price" className="form-label">
+                          Precio
+                        </label>
+                        <input
+                          type="number"
+                          placeholder="Type here"
+                          className="form-control"
+                          id="product_price"
+                          required
+                          value={price}
+                          onChange={(e) => setPrice(e.target.value)}
+                        />
+                      </div>
+                      <div className="mb-4">
+                        <label htmlFor="product_price" className="form-label">
+                          Cantidad en Stock
+                        </label>
+                        <input
+                          type="number"
+                          placeholder="Type here"
+                          className="form-control"
+                          id="product_price"
+                          // required
+                          value={countInStock}
+                          onChange={(e) => setCountInStock(e.target.value)}
+                        />
+                      </div>
+                      <div className="mb-4">
+                        <label className="form-label">Descripcion</label>
+                        <textarea
+                          placeholder="Escribir aqui"
+                          className="form-control"
+                          rows="7"
+                          // required
+                          value={description}
+                          onChange={(e) => setDescription(e.target.value)}
+                        ></textarea>
+                      </div>
+                      <div className="mb-4">
+                        {/* <label className="form-label">Images</label>
                     <input
                       className="form-control"
                       type="text"
@@ -242,14 +243,22 @@ const AddProductMain = () => {
                       // required
                       onChange={(e) => setImage4(e.target.value)}
                     /> */}
-                    <input
-                      className="form-control mt-3"
-                      type="file"
-                      name="photo"
-                      multiple
-                      required
-                      onChange={(e) => handleChange(e)}
-                    />
+                        <input
+                          className="form-control mt-3"
+                          type="file"
+                          name="photo"
+                          multiple
+                          required
+                          onChange={(e) => handleChange(e)}
+                        />
+                      </div>
+                    </>
+                  )}
+
+                  <div>
+                    <button type="submit" className="btn btn-primary">
+                      Publicar Ahora
+                    </button>
                   </div>
                 </div>
               </div>

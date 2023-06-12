@@ -63,7 +63,10 @@ const OrderDetailmain = (props) => {
         <Message variant="alert-danger">{error}</Message>
       ) : (
         <div className="card">
-          <header className="card-header p-3 Header-green">
+          <header
+            className="card-header p-3 "
+            style={{ backgroundColor: "#6768A9" }}
+          >
             <div className="row align-items-center ">
               <div className="col-lg-6 col-md-6">
                 <span>
@@ -77,7 +80,7 @@ const OrderDetailmain = (props) => {
                   Order ID: {order._id}
                 </small>
               </div>
-              <div className="col-lg-6 col-md-6 ms-auto d-flex justify-content-end align-items-center">
+              {/* <div className="col-lg-6 col-md-6 ms-auto d-flex justify-content-end align-items-center">
                 <select
                   className="form-select d-inline-block"
                   style={{ maxWidth: "200px" }}
@@ -91,7 +94,7 @@ const OrderDetailmain = (props) => {
                 <Link className="btn btn-success ms-2" to="#">
                   <i className="fas fa-print"></i>
                 </Link>
-              </div>
+              </div> */}
             </div>
           </header>
           <div>
@@ -100,7 +103,7 @@ const OrderDetailmain = (props) => {
                 <p className="text-white text-center ">Pago Exitoso</p>
               </div>
             ) : order.isPaid ? (
-              <div className="bg-warning">
+              <div className="bg-info">
                 <p className=" text-center  ">Pago por Validar</p>
               </div>
             ) : (
@@ -144,13 +147,20 @@ const OrderDetailmain = (props) => {
                 <div className="box shadow-sm bg-light">
                   {order.isPaid && !order.isDelivered ? (
                     <>
-                      {loadingDelivered && <Loading />}
+                      {/* {loadingDelivered && <Loading />}
                       <button
                         onClick={deliverHandler}
                         className="btn btn-dark col-12"
                       >
                         MARK AS DELIVERED
-                      </button>
+                      </button> */}
+                      <a
+                        href={order.comprobantePago}
+                        target="_blank"
+                        className="btn btn-dark col-12"
+                      >
+                        Ver Comprobante de pago
+                      </a>
                     </>
                   ) : order.isDelivered ? (
                     <>
@@ -173,7 +183,7 @@ const OrderDetailmain = (props) => {
 
                     <div className="d-flex justify-content-center">
                       <button
-                        className="btn btn-info"
+                        className="btn btn-success"
                         onClick={() => {
                           successPaymentHandler();
                           confirmpayHandler();
@@ -196,7 +206,7 @@ const OrderDetailmain = (props) => {
                     <div className="d-flex justify-content-center">
                       <button
                         onClick={confirmpayHandler}
-                        className="btn btn-warning "
+                        className="btn btn-success "
                       >
                         Confirmar el Pago
                       </button>
@@ -208,6 +218,9 @@ const OrderDetailmain = (props) => {
           </div>
         </div>
       )}
+      <p className="text-center" style={{ fontSize: "0.8rem" }}>
+        Al confirmar el pago, el producto se descontara de tu stock
+      </p>
     </section>
   );
 };

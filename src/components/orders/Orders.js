@@ -15,7 +15,7 @@ const Orders = (props) => {
           <th scope="col">Total</th>
           <th scope="col">Pagado</th>
           <th scope="col">Fecha</th>
-          <th>Status</th>
+          {/* <th>Status</th> */}
           <th scope="col" className="text-end">
             Detalle
           </th>
@@ -46,13 +46,13 @@ const Orders = (props) => {
               )}
             </td>
             <td>{moment(order.createdAt).format("MMM Do YY")}</td>
-            <td>
+            {/* <td>
               {order.isDelivered ? (
                 <span className="badge btn-success">Delivered</span>
               ) : (
                 <span className="badge btn-dark">Not delivered</span>
               )}
-            </td>
+            </td> */}
             <td className="d-flex justify-content-end align-item-center">
               <Link to={`/order/${order._id}`} className="text-success">
                 <i className="fas fa-eye"></i>
